@@ -21,12 +21,18 @@ int main()
 	}
 
 	vector<int> S(n);
-	
+
 	for (int i = 0; i < n; i++)
 	{
-		cin >> S[i];
+		//cin >> S[i];
+		S[i] = rand() % 100 + 1;
+		cout << "S[" << i << "] = " << S[i] << endl;
 	}
 
+	cout << "]";
+
+	// Algoritmo de backtracking 
+	cout << "Backtracking: " << backtracking(S, V) << endl;
 	// Algoritmo de fuerza bruta 
 	cout << "Fuerza bruta: " << fuerzaBruta(S, V) << endl;
 
