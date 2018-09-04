@@ -82,7 +82,7 @@ int backtracking(vector<int> S, int V)
 	unsigned long long int cardinalPartes = getCardinalPartes(S.size());
 
 	// Para cada subconjunto de S... O(2^n)
-	for (int i = 0; i < cardinalPartes; i++)
+	for (unsigned long long int i = 0; i < cardinalPartes; i++)
 	{
 		vector<bool> binario = getBinario(i, S.size()); // O(n)
 		vector<int> subconjunto;
@@ -97,7 +97,7 @@ int backtracking(vector<int> S, int V)
 		// subconjunto solución actual, entonces seguro que este subconjunto no será solución optima, con lo
 		// cual lo podemos saltear
 
-		if (minimoCardinal != -1 && subconjunto.size() > minimoCardinal)
+		if (minimoCardinal != -1 && (int)subconjunto.size() > minimoCardinal)
 			continue; // Avanzar al siguiente subconjunto
 		
 		// Hacemos la sumatoria del subconjunto
@@ -133,7 +133,7 @@ int fuerzaBruta(vector<int> S, int V)
 	unsigned long long int cardinalPartes = getCardinalPartes(S.size());
 
 	// Para cada subconjunto de S... O(2^n)
-	for (int i = 0; i < cardinalPartes; i++)
+	for (unsigned long int i = 0; i < cardinalPartes; i++)
 	{
 		vector<bool> binario = getBinario(i, S.size()); // O(n)
 		vector<int> subconjunto;
@@ -183,6 +183,7 @@ int getSumatoria(vector<int> items)
 	return res;
 }
 
+/*
 vector<vector<int>> getConjuntoDePartes(vector<int> items)
 {
 	long long int cardinalPartes = pow(2, items.size());
@@ -204,6 +205,7 @@ vector<vector<int>> getConjuntoDePartes(vector<int> items)
 
 	return res;
 }
+*/
 
 vector<bool> getBinario(int n, int length)
 {

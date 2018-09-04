@@ -2,6 +2,7 @@
     "files.associations": {
         "vector": "cpp",
         "deque": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "chrono": "cpp"
     }
 }
