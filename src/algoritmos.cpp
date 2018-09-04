@@ -4,6 +4,60 @@
 
 using namespace std;
 
+
+int programacionDinamica(vector<int> S, int V)
+{
+	return programacionDinamicaAux(S, S.size(), V);
+}
+
+int programacionDinamicaAux(vector<int> S, int i, int v)
+{
+	if (v < 0)
+		return -1; // +infinito
+
+	if (matriz[v][i] == -2)
+	{
+		if (i == 0 && v == 0)
+		{
+			matriz[v][i] = 0;
+		}
+		else if (i == 0 && v !=0)
+		{
+			matriz[v][i] = -1;
+		}
+		else
+		{
+			int resultadoPongo = programacionDinamicaAux(S, i-1, v - S[i-1]);
+			int resultadoNoPongo = programacionDinamicaAux(S, i-1, v);
+
+			int resultado;
+
+			if (resultadoPongo != -1 && resultadoNoPongo != -1)
+			{
+				// Si los dos números son distintos de +infinito
+				resultado = (resultadoPongo + 1 < resultadoNoPongo ? resultadoPongo + 1 : resultadoNoPongo);
+			}
+			else if (resultadoPongo != -1)
+			{
+				// Sólo resultadoPongo es un número finito
+				resultado = resultadoPongo + 1;
+			}
+			else if (resultadoNoPongo != -1)
+			{
+				// Sólo resultadoNoPongo es un número finito
+				resultado = resultadoNoPongo;
+			}
+			else
+			{
+				resultado = -1;
+			}
+			matriz[v][i] = resultado;
+		}
+	}
+
+	return matriz[v][i];
+}
+
 int backtracking(vector<int> S, int V)
 {
 	// Poda por factibilidad:
