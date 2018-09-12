@@ -1,66 +1,50 @@
-CXX ?= g++
-
-# path #
-SRC_PATH = src
-BUILD_PATH = build
-BIN_PATH = $(BUILD_PATH)/bin
-
-# executable # 
-BIN_NAME = tp1
-
-# extensions #
-SRC_EXT = cpp
-
-# code lists #
-# Find all source files in the source directory, sorted by
-# most recently modified
-SOURCES = $(shell find $(SRC_PATH) -name '*.$(SRC_EXT)' | sort -k 1nr | cut -f2-)
-# Set the object file names, with the source directory stripped
-# from the path, and the build path prepended in its place
-OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
-# Set the dependency files that will be used to add header dependencies
-DEPS = $(OBJECTS:.o=.d)
-
-# flags #
+CXX           = g++
 COMPILE_FLAGS = -std=c++11 -Wall -Wextra -g
-INCLUDES = -I include/ -I /usr/local/include
-# Space-separated pkg-config libraries used by this project
-LIBS =
+CXXFLAGS      = $(COMPILE_FLAGS)
+LIBS          = 
+DEL_FILE      = rm -f
 
-.PHONY: default_target
-default_target: release
+OBJECTS_FUERZA_BRUTA 			= 	fuerzabruta.o \
+									algoritmos.o
 
-.PHONY: release
-release: export CXXFLAGS := $(CXXFLAGS) $(COMPILE_FLAGS)
-release: dirs
-	@$(MAKE) all
+OBJECTS_BACKTRACKING 			= 	backtracking.o \
+									algoritmos.o
 
-.PHONY: dirs
-dirs:
-	@mkdir -p $(dir $(OBJECTS))
-	@mkdir -p $(BIN_PATH)
+OBJECTS_PROGRAMACION_DINAMICA 	=	programaciondinamica.o \
+									algoritmos.o
 
-.PHONY: clean
-clean:
-	@$(RM) $(BIN_NAME)
-	@$(RM) -r $(BUILD_PATH)
-	@$(RM) -r $(BIN_PATH)
+TARGET_FUERZA_BRUTA        		= fuerzabruta
+TARGET_BACKTRACKING        		= backtracking
+TARGET_PROGRAMACION_DINAMICA	= programaciondinamica
 
-# checks the executable and symlinks to the output
-.PHONY: all
-all: $(BIN_PATH)/$(BIN_NAME)
-	@$(RM) $(BIN_NAME)
-	@ln -s $(BIN_PATH)/$(BIN_NAME) $(BIN_NAME)
+all: $(TARGET_FUERZA_BRUTA) $(TARGET_BACKTRACKING) $(TARGET_PROGRAMACION_DINAMICA)
 
-# Creation of the executable
-$(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
-	$(CXX) $(OBJECTS) -o $@
+$(TARGET_FUERZA_BRUTA):  $(OBJECTS_FUERZA_BRUTA)  
+	$(CXX) -o $(TARGET_FUERZA_BRUTA) $(OBJECTS_FUERZA_BRUTA) $(OBJCOMP) $(LIBS)
 
-# Add dependency files, if they exist
--include $(DEPS)
+$(TARGET_BACKTRACKING):  $(OBJECTS_BACKTRACKING)  
+	$(CXX) -o $(TARGET_BACKTRACKING) $(OBJECTS_BACKTRACKING) $(OBJCOMP) $(LIBS)
 
-# Source file rules
-# After the first compilation they will be joined with the rules from the
-# dependency files to provide header dependencies
-$(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
+$(TARGET_PROGRAMACION_DINAMICA):  $(OBJECTS_PROGRAMACION_DINAMICA)  
+	$(CXX) -o $(TARGET_PROGRAMACION_DINAMICA) $(OBJECTS_PROGRAMACION_DINAMICA) $(OBJCOMP) $(LIBS)
+
+clean: 
+	-$(DEL_FILE) $(OBJECTS_FUERZA_BRUTA)
+	-$(DEL_FILE) $(OBJECTS_BACKTRACKING)
+	-$(DEL_FILE) $(OBJECTS_PROGRAMACION_DINAMICA)
+	-$(DEL_FILE) *~ core *.core
+	-$(DEL_FILE) $(TARGET_FUERZA_BRUTA)
+	-$(DEL_FILE) $(TARGET_BACKTRACKING)
+	-$(DEL_FILE) $(TARGET_PROGRAMACION_DINAMICA)
+
+$(TARGET_FUERZA_BRUTA).o: src/$(TARGET_FUERZA_BRUTA).cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $(TARGET_FUERZA_BRUTA).o src/$(TARGET_FUERZA_BRUTA).cpp
+
+$(TARGET_BACKTRACKING).o: src/$(TARGET_BACKTRACKING).cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $(TARGET_BACKTRACKING).o src/$(TARGET_BACKTRACKING).cpp
+
+$(TARGET_PROGRAMACION_DINAMICA).o: src/$(TARGET_PROGRAMACION_DINAMICA).cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $(TARGET_PROGRAMACION_DINAMICA).o src/$(TARGET_PROGRAMACION_DINAMICA).cpp
+
+algoritmos.o: src/algoritmos.cpp src/algoritmos.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o algoritmos.o src/algoritmos.cpp
