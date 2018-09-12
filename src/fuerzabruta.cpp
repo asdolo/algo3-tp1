@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -28,15 +29,21 @@ int main()
 		cin >> S[i];
 	}
 
+	ofstream myFile;
+	myFile.open("output/fuerzabruta.csv", ios_base::app);
+	myFile << n << "," << V;
+
 	int res;
 
 	// Algoritmo de fuerza bruta
-	cout << "Calculando con Fuerza bruta..." << endl;
 	auto startTime = chrono::steady_clock::now();
 	res = fuerzaBruta(S, V);
 	auto endTime = chrono::steady_clock::now();
-	cout << "Fuerza bruta: " << res << endl;
-	cout << "Tiempo: " << chrono::duration <double, milli> (endTime - startTime).count() << " ms" << endl;
+	cout << res << endl;
+
+	myFile << "," << res << "," << chrono::duration <double, milli> (endTime - startTime).count() << endl;
+
+	myFile.close();
 
 	return 0;
 }

@@ -31,12 +31,10 @@ int main()
 	int res;
 
 	// Algoritmo de backtracking
-	cout << "Calculando con Backtracking..." << endl;
 	auto startTime = chrono::steady_clock::now();
 	res = backtracking(S, V);
 	auto endTime = chrono::steady_clock::now();
-	cout << "Backtracking: " << res << endl;
-	cout << "Tiempo: " << chrono::duration <double, milli> (endTime - startTime).count() << " ms" << endl;
+	cout << res << endl;
 
 	return 0;
 }

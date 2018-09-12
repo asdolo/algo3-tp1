@@ -39,12 +39,10 @@ int main()
 	int res;
 
 	// Algoritmo de programación dinámica
-	cout << "Calculando con Programación Dinámica..." << endl;
 	auto startTime = chrono::steady_clock::now();
 	res = programacionDinamica(S, V);
 	auto endTime = chrono::steady_clock::now();
-	cout << "Programación dinámica: " << res << endl;
-	cout << "Tiempo: " << chrono::duration <double, milli> (endTime - startTime).count() << " ms" << endl;
+	cout << res << endl;
 
 	return 0;
 }
