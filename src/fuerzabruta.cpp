@@ -21,6 +21,9 @@ int main()
 		cerr << "n y V deben ser no negativos.";
 		return -1;
 	}
+
+	ofstream myFile;
+	myFile.open("output/fuerzabruta.csv", ios_base::app);
 	
 	vector<int> S(n);
 
@@ -28,10 +31,6 @@ int main()
 	{
 		cin >> S[i];
 	}
-
-	ofstream myFile;
-	myFile.open("output/fuerzabruta.csv", ios_base::app);
-	myFile << n << "," << V;
 
 	int res;
 
@@ -41,8 +40,7 @@ int main()
 	auto endTime = chrono::steady_clock::now();
 	cout << res << endl;
 
-	myFile << "," << res << "," << chrono::duration <double, milli> (endTime - startTime).count() << endl;
-
+	myFile << n << "," << V << "," << res << "," << chrono::duration <double, milli> (endTime - startTime).count() << endl;
 	myFile.close();
 
 	return 0;

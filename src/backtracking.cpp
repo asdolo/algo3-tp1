@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -21,6 +22,9 @@ int main()
 		return -1;
 	}
 	
+	ofstream myFile;
+	myFile.open("output/backtracking.csv", ios_base::app);
+	
 	vector<int> S(n);
 
 	for (int i = 0; i < n; i++)
@@ -35,6 +39,9 @@ int main()
 	res = backtracking(S, V);
 	auto endTime = chrono::steady_clock::now();
 	cout << res << endl;
+
+	myFile << n << "," << V << "," << res << "," << chrono::duration <double, milli> (endTime - startTime).count() << endl;
+	myFile.close();
 
 	return 0;
 }

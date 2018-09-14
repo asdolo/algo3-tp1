@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <fstream>
 
 using namespace std;
 
@@ -20,6 +21,9 @@ int main()
 		cerr << "n y V deben ser no negativos.";
 		return -1;
 	}
+
+	ofstream myFile;
+	myFile.open("output/programaciondinamica.csv", ios_base::app);
 	
 	vector<int> S(n);
 
@@ -43,6 +47,9 @@ int main()
 	res = programacionDinamica(S, V);
 	auto endTime = chrono::steady_clock::now();
 	cout << res << endl;
+
+	myFile << n << "," << V << "," << res << "," << chrono::duration <double, milli> (endTime - startTime).count() << endl;
+	myFile.close();
 
 	return 0;
 }
