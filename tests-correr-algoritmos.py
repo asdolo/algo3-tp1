@@ -4,8 +4,10 @@ import random
 from subprocess import Popen, PIPE, STDOUT
 
 # Aca se definen los tamanos de la entrada y la cantidad de muestras por cada n y V
-MAX_N = 30
-MAX_V = 200
+MAX_N = 1000
+MAX_V = 1000
+CRECIMIENTO_N = 10
+CRECIMIENTO_V = 10
 CANT_MUESTRAS = 20
 
 class color:
@@ -88,14 +90,14 @@ output_file.close()
 
 print('Ejecutando ' + apply_effects(algoritmo, color.BOLD) + ' con valores de entrada ' + apply_effects('0 <= n <= ' + str(MAX_N), [color.GREEN, color.BOLD]) + ' y ' + apply_effects('0 <= V <= ' + str(MAX_V), [color.GREEN, color.BOLD]) + '.')
 print('Para cada valor de n y V se van a tomar ' + apply_effects(str(CANT_MUESTRAS), [color.GREEN, color.BOLD]) + ' muestras.')
-print('El algoritmo se va a ejecutar un total de ' + apply_effects(str(CANT_MUESTRAS * ((MAX_N+1) * (MAX_V+10)/10)), [color.GREEN, color.BOLD]) + ' veces.')
+print('El algoritmo se va a ejecutar un total de ' + apply_effects(str(CANT_MUESTRAS * (((MAX_N+CRECIMIENTO_N)/CRECIMIENTO_N) * (MAX_V+CRECIMIENTO_V)/CRECIMIENTO_V)), [color.GREEN, color.BOLD]) + ' veces.')
 
 # Vario el tamano de n
-for n in range(0, MAX_N+1):
+for n in range(0, MAX_N+CRECIMIENTO_N, CRECIMIENTO_N):
     print('')
     print(' n=' + str(n) + '/' + str(MAX_N))
     # Vario el tamano de V
-    for V in range(0, MAX_V+10, 10):
+    for V in range(0, MAX_V+CRECIMIENTO_V, CRECIMIENTO_V):
         print('   V=' + str(V) + '/' + str(MAX_V))
         # Genero los inputs que van a ir al stdin por un pipe
         input = str(n) + ' ' + str(V) + '\n'
