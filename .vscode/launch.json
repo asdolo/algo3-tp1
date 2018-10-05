@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/tp1",
+            "program": "${workspaceFolder}/backtracking",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
