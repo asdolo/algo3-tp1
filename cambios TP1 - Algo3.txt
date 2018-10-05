@@ -1,0 +1,11 @@
+- Se cambió levemente el pseudocodigo de Fuerza Bruta para explicar mejor su complejidad
+- Se cambió la explicación de la complejidad del algoritmo de Fuerza Bruta
+
+- Se cambió levemente la idea del algoritmo de Backtracking
+
+- Se agregó el caso base para V < 0 en la función de Programación Dinámica, tanto en la función recursiva como en el pseudocódigo
+- Se cambió levemente la idea del algoritmo de Programación Dinámica
+- Se cambió levemente la explicación de la complejidad del algoritmo de Programación Dinámica
+
+- Se corrigieron algunos errores conceptuales
+- Se corrigieron algunos errores tipográficos (typos)
