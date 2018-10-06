@@ -1,11 +1,31 @@
+Hecho:
 - Se cambió levemente el pseudocodigo de Fuerza Bruta para explicar mejor su complejidad
 - Se cambió la explicación de la complejidad del algoritmo de Fuerza Bruta
 
 - Se cambió levemente la idea del algoritmo de Backtracking
 
-- Se agregó el caso base para V < 0 en la función de Programación Dinámica, tanto en la función recursiva como en el pseudocódigo
+- Se agregó el caso base para V < 0 en la función recursiva de Programación Dinámica
 - Se cambió levemente la idea del algoritmo de Programación Dinámica
+- Se agregó el caso base para V < 0 en el pseudocodigo de Programación Dinámica
 - Se cambió levemente la explicación de la complejidad del algoritmo de Programación Dinámica
 
-- Se corrigieron algunos errores conceptuales
-- Se corrigieron algunos errores tipográficos (typos)
+- Se corrigieron algunos errores tipográficos
+
+
+
+Falta:
+- Arreglar código de Backtracking
+- Arreglar pseudocódigo de Backtracking
+- Arreglar explicación de la complejidad de Backtracking
+- Explicar el mapeo entre sufijos y subconjuntos en la explicación de la complejidad del algoritmo de Programación Dinámica
+
+- Experimentos interesantes (preguntar cuáles)
+- Contextualizar experimentos (preguntar)
+- Definir las instancias de los experimentos (preguntar)
+
+- Dar experimentos que usen ambas podas en Backtracking y ver cómo impactan (preguntar)
+- Dar experimentos (valores de S[i]) donde PD no sea el mejor algoritmo de los 3
+
+- Poner captions en los gráficos
+- Generar gráficos en escala de grises
+- Arreglar gráfico de la figura 1 (denominador del eje y)

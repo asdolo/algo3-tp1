@@ -3,12 +3,13 @@
 #include <vector>
 #include <chrono>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
 vector<vector<int>> matriz;
 
-int main()
+int main(int argc, char* argv[])
 {
 	int n, V;
 	n = V = 0;
@@ -23,7 +24,9 @@ int main()
 	}
 
 	ofstream myFile;
-	myFile.open("output/fuerzabruta.csv", ios_base::app);
+	stringstream fileName;
+	fileName << "output/" << (argc > 1 ? argv[1] : "fuerzabruta.csv");
+	myFile.open(fileName.str(), ios_base::app);
 	
 	vector<int> S(n);
 

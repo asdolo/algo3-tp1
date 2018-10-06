@@ -22,6 +22,9 @@ class color:
     UNDERLINE = '\033[4m'
     END = '\033[0m'
 
+def clear_screen():
+    print("\033[H\033[J")
+
 def apply_effects(text, effects):
     res = ''
     for x in effects:
@@ -48,6 +51,8 @@ def print_modo_de_uso():
     print('')
 
 # Main:
+clear_screen()
+
 if sys.version_info[0] != 2:
     print(apply_effects('Por favor, ejecute este script en Python 2.', [color.RED, color.BOLD]))
     print('')
