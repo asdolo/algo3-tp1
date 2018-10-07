@@ -1,6 +1,7 @@
 import os
 import sys
 import random
+import math
 from subprocess import Popen, PIPE, STDOUT
 
 class color:
@@ -95,7 +96,7 @@ if parametro == '1':
 
     # El test se va a ejecutar con valores de n entre 1 y 20 (mas que eso no, ya que no tiene sentido porque fuerza bruta tarda mucho)
     # Para cada valor de n, los elementos del conjunto van a ser los numeros naturales de 1 a n,
-    # y el valor V a calcular sera la suma de de todo S. Es decir, la suma de Gauss
+    # y el valor V a calcular sera la suma de de todo S. Es decir, la suma de Gauss de 1 a n
     # Es decir, el unico subconjunto de S que sera solucion (y optima), sera S
     # Esto fuerza a que el algoritmo de Backtracking no haga ninguna poda por el orden en el que ejecuta las ramas de los sub-arboles
     # Por ejemplo, para n = 5, S = { 1, 2, 3, 4, 5 }, y V = (5*6)/2 = 15
@@ -116,7 +117,7 @@ if parametro == '1':
         for i in range(1, n + 1):
             input += str(i) + '\n'
 
-        # Para minimizar el error, voy a ejecutar los algoritmos 20 veces por cada valor de n
+        # Para reducir el error, voy a ejecutar los algoritmos 20 veces por cada valor de n
         for i in range(0, 20):
             p = Popen('./fuerzabruta ' + get_output_name(1, 'fuerzabruta'), stdin=PIPE, stdout=PIPE, shell=True)
             output = p.communicate(os.linesep.join([input]))[0]
@@ -124,7 +125,130 @@ if parametro == '1':
         for i in range(0, 20):
             p = Popen('./backtracking ' + get_output_name(1, 'backtracking'), stdin=PIPE, stdout=PIPE, shell=True)
             output = p.communicate(os.linesep.join([input]))[0]
-        
+elif parametro == '2':
+    # Test 2:
+    # Fuerza bruta vs backtracking (con podas)
+
+    # Limpio los outputs viejos del test
+    limpiar_outputs(2, 'a-fuerzabruta')
+    limpiar_outputs(2, 'a-backtracking')
+    limpiar_outputs(2, 'b-fuerzabruta')
+    limpiar_outputs(2, 'b-backtracking')
+    limpiar_outputs(2, 'c-fuerzabruta')
+    limpiar_outputs(2, 'c-backtracking')
+
+    # Parte a: Poda de medio arbol (tiempo exponencial reducido a la mitad)
+    # El test en cuestion
+    # Vario el tamano de n
+    for n in range(1, 20 + 1):
+        V = n
+
+        print('')
+        print(' n=' + str(n) + '/' + str(20) + ', V = ' + str(V))
+
+        # Genero los inputs que van a ir al stdin por un pipe
+        input = str(n) + ' ' + str(V) + '\n'
+
+        # Genero cada numero del conjunto
+        input += str(2*n) + '\n'
+        for i in range(2, n + 1):
+            input += str(1) + '\n'
+
+        # Para reducir el error, voy a ejecutar los algoritmos 20 veces por cada valor de n
+        for i in range(0, 20):
+            p = Popen('./fuerzabruta ' + get_output_name(2, 'a-fuerzabruta'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
+        for i in range(0, 20):
+            p = Popen('./backtracking ' + get_output_name(2, 'a-backtracking'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
+    # Parte b: Poda de todo el arbol (tiempo constante)  
+    # El test en cuestion
+    # Vario el tamano de n
+    for n in range(1, 20 + 1):
+        V = 0
+
+        print('')
+        print(' n=' + str(n) + '/' + str(20) + ', V = ' + str(V))
+
+        # Genero los inputs que van a ir al stdin por un pipe
+        input = str(n) + ' ' + str(V) + '\n'
+
+        # Genero cada numero del conjunto
+        for i in range(1, n + 1):
+            input += str(i) + '\n'
+
+        # Para reducir el error, voy a ejecutar los algoritmos 20 veces por cada valor de n
+        for i in range(0, 20):
+            p = Popen('./fuerzabruta ' + get_output_name(2, 'b-fuerzabruta'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
+        for i in range(0, 20):
+            p = Popen('./backtracking ' + get_output_name(2, 'b-backtracking'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
+    # Parte c: Poda de todo el arbol menos una rama (tiempo lineal a n)    
+    # El test en cuestion
+    # Vario el tamano de n
+    for n in range(1, 20 + 1):
+        V = n
+
+        print('')
+        print(' n=' + str(n) + '/' + str(20) + ', V = ' + str(V))
+
+        # Genero los inputs que van a ir al stdin por un pipe
+        input = str(n) + ' ' + str(V) + '\n'
+
+        # Genero cada numero del conjunto
+        for i in range(1, n):
+            input += str(1) + '\n'
+        input += str(n) + '\n'
+
+        # Para reducir el error, voy a ejecutar los algoritmos 20 veces por cada valor de n
+        for i in range(0, 20):
+            p = Popen('./fuerzabruta ' + get_output_name(2, 'c-fuerzabruta'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
+        for i in range(0, 20):
+            p = Popen('./backtracking ' + get_output_name(2, 'c-backtracking'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
+elif parametro == '3':
+    # Test 3:
+    # Backtracking (con podas) vs Programacion Dinamica
+
+    # Limpio los outputs viejos del test
+    limpiar_outputs(3, 'backtracking')
+    limpiar_outputs(3, 'programaciondinamica')
+
+    # El test en cuestion
+    # Vario el tamano de n
+    for n in range(1, 20 + 1):
+        V = int(3*math.pow(2,n))
+
+        print(V)
+        print('')
+        print(' n=' + str(n) + '/' + str(20) + ', V = ' + str(V))
+
+        # Genero los inputs que van a ir al stdin por un pipe
+        input = str(n) + ' ' + str(V) + '\n'
+
+
+        # Genero cada numero del conjunto
+        for i in range(1, n):
+            input += str(1) + '\n'
+        input += str(V) + '\n'
+
+        # Para reducir el error, voy a ejecutar los algoritmos 20 veces por cada valor de n
+        for i in range(0, 20):
+            p = Popen('./backtracking ' + get_output_name(3, 'backtracking'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
+        for i in range(0, 20):
+            p = Popen('./programaciondinamica ' + get_output_name(3, 'programaciondinamica'), stdin=PIPE, stdout=PIPE, shell=True)
+            output = p.communicate(os.linesep.join([input]))[0]
+
 else:
     print_modo_de_uso()
     exit()    

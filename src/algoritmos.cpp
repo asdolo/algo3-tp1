@@ -80,7 +80,7 @@ int backtrackingAux(vector<int> S, vector<int> subconjunto, int i, int V, int& m
 	}
 	else
 	{
-		// Si este subconjunto no suma el numero V, sigo buscando en los sub-árboles
+		// Si este subconjunto no suma el numero V, sigo buscando en los sub-árboles (sólo si este subconjunto no es una hoja)
 		if (i < S.size())
 		{
 			int resultadoNoPongo = backtrackingAux(S, subconjunto, i+1, V, minimoGlobal);

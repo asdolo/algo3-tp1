@@ -3,6 +3,9 @@ Hecho:
 - Se cambió la explicación de la complejidad del algoritmo de Fuerza Bruta
 
 - Se cambió levemente la idea del algoritmo de Backtracking
+- Se arregló el código de Backtracking para que haga las podas correctamente
+- Se arregló el pseudocódigo de Backtracking para que haga las podas correctamente
+- Se arregló la explicación de la complejidad del algoritmo de Backtracking
 
 - Se agregó el caso base para V < 0 en la función recursiva de Programación Dinámica
 - Se cambió levemente la idea del algoritmo de Programación Dinámica
@@ -14,11 +17,6 @@ Hecho:
 
 
 Falta:
-- Arreglar código de Backtracking
-- Arreglar pseudocódigo de Backtracking
-- Arreglar explicación de la complejidad de Backtracking
-- Explicar el mapeo entre sufijos y subconjuntos en la explicación de la complejidad del algoritmo de Programación Dinámica
-
 - Experimentos interesantes (preguntar cuáles)
 - Contextualizar experimentos (preguntar)
 - Definir las instancias de los experimentos (preguntar)
