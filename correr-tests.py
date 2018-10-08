@@ -137,7 +137,7 @@ elif parametro == '2':
     limpiar_outputs(2, 'c-fuerzabruta')
     limpiar_outputs(2, 'c-backtracking')
 
-    # Parte a: Poda de medio arbol (tiempo exponencial reducido a la mitad)
+# Parte a: Poda de medio arbol (tiempo exponencial reducido a la mitad)
     # El test en cuestion
     # Vario el tamano de n
     for n in range(1, 20 + 1):
@@ -225,7 +225,7 @@ elif parametro == '3':
     # El test en cuestion
     # Vario el tamano de n
     for n in range(1, 20 + 1):
-        V = int(3*math.pow(2,n))
+        V = int(10*math.pow(2,n))
 
         print(V)
         print('')
@@ -237,7 +237,7 @@ elif parametro == '3':
 
         # Genero cada numero del conjunto
         for i in range(1, n):
-            input += str(1) + '\n'
+            input += str(i) + '\n'
         input += str(V) + '\n'
 
         # Para reducir el error, voy a ejecutar los algoritmos 20 veces por cada valor de n

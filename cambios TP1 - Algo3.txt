@@ -1,29 +1,26 @@
 Hecho:
-- Se cambió levemente el pseudocodigo de Fuerza Bruta para explicar mejor su complejidad
-- Se cambió la explicación de la complejidad del algoritmo de Fuerza Bruta
+- Se cambió levemente la explicación ambos ejemplos del subset sum (página 1)
+- Se cambió la idea del algoritmo de Fuerza Bruta (página 1)
+- Se cambió levemente el pseudocodigo de Fuerza Bruta para explicar mejor su complejidad (página 2)
+- Se cambió la explicación de la complejidad del algoritmo de Fuerza Bruta (página 2)
 
-- Se cambió levemente la idea del algoritmo de Backtracking
-- Se arregló el código de Backtracking para que haga las podas correctamente
-- Se arregló el pseudocódigo de Backtracking para que haga las podas correctamente
-- Se arregló la explicación de la complejidad del algoritmo de Backtracking
+- Se cambió levemente la idea del algoritmo de Backtracking (páginas 2 y 3)
+- Se arregló el código de Backtracking para que haga las podas correctamente (algoritmos.cpp)
+- Se arregló el pseudocódigo de Backtracking para que haga las podas correctamente (página 3)
+- Se arregló la explicación de la complejidad del algoritmo de Backtracking (página 4)
 
-- Se agregó el caso base para V < 0 en la función recursiva de Programación Dinámica
-- Se cambió levemente la idea del algoritmo de Programación Dinámica
-- Se agregó el caso base para V < 0 en el pseudocodigo de Programación Dinámica
-- Se cambió levemente la explicación de la complejidad del algoritmo de Programación Dinámica
+- Se agregó el caso base para V < 0 en la función recursiva de Programación Dinámica (páginas 4 y 5)
+- Se cambió levemente la idea del algoritmo de Programación Dinámica (páginas 4 y 5)
+- Se agregó el caso base para V < 0 en el pseudocodigo de Programación Dinámica (página 5)
+- Se cambió levemente la explicación de la complejidad del algoritmo de Programación Dinámica (página 5)
+
+- Se rediseñó completamente la estructura del informe a partir de la sección de experimentos:
+    Ahora hay dos secciones separadas: Análisis de resultados y Experimentos
+
+- Se agregaron experimentos interesantes
+- Se contextualizaron los experimentos
+- Se definieron las instancias de los experimentos
+- Se agregaron los captions faltantes a todas las figuras
 
 - Se corrigieron algunos errores tipográficos
-
-
-
-Falta:
-- Experimentos interesantes (preguntar cuáles)
-- Contextualizar experimentos (preguntar)
-- Definir las instancias de los experimentos (preguntar)
-
-- Dar experimentos que usen ambas podas en Backtracking y ver cómo impactan (preguntar)
-- Dar experimentos (valores de S[i]) donde PD no sea el mejor algoritmo de los 3
-
-- Poner captions en los gráficos
-- Generar gráficos en escala de grises
-- Arreglar gráfico de la figura 1 (denominador del eje y)
+- Se corrigieron algunas faltas ortográficas
