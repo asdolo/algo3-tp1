@@ -113,19 +113,21 @@ if algoritmo == 'fuerzabruta':
 
 elif algoritmo == 'backtracking':
     # Vario el tamano de n
-    for n in range(0, 1000 + 10, 10):
+    for n in range(0, 40 + 10, 10):
         print('')
-        print(' n=' + str(n) + '/' + str(1000))
+        print(' n=' + str(n) + '/' + str(40))
 
         # Vario el tamano de V
-        for V in range(0, 1000 + 10, 10):
-            print('   V=' + str(V) + '/' + str(1000))
+        for V in range(0, 100 + 10, 10):
+            print('   V=' + str(V) + '/' + str(100))
             # Genero los inputs que van a ir al stdin por un pipe
             input = str(n) + ' ' + str(V) + '\n'
 
             # Genero cada numero del conjunto
             for i in range(0, n):
-                input += str(random.randint(0, int(3*V/n))) + '\n'
+                input += str(random.randint(0, V)) + '\n'
+
+            print(input)
 
             for i in range(0, 20):
                 p = Popen('./' + algoritmo + ' ' + output_file_path, stdin=PIPE, stdout=PIPE, shell=True)
